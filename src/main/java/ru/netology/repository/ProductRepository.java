@@ -19,17 +19,17 @@ public class ProductRepository {
         return goods;
     }
 
-    public void removeById(int id){
-        int length = goods.length - 1;
-        Product[]tmp = new Product[length];
-        int index = 0;
-        for (Product item : goods) {
-            if (item.getId() !=id) {
-                tmp[index] = item;
-                index++;
-            }
-        }
-        goods = tmp;
-    }
+//    public void removeById(int id){
+//        int length = goods.length - 1;
+//        Product[]tmp = new Product[length];
+//        int index = 0;
+//        for (Product item : goods) {
+//            if (item.getId() !=id) {
+//                tmp[index] = item;
+//                index++;
+//            }
+//        }
+//        goods = tmp;
+//    }
 
 }

@@ -7,12 +7,22 @@ import java.util.Objects;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+
 
 public class Product {
     private int id;
     private String productName;
     private int productCount;
+
+    public Product(int id, String productName, int productCount) {
+        this.id = id;
+        this.productName = productName;
+        this.productCount = productCount;
+    }
+
+    public boolean matches(String search){
+       return productName.contains(search);
+    }
 
 
     @Override

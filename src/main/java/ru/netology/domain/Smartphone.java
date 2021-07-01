@@ -16,9 +16,15 @@ public class Smartphone extends Product {
         super(id, productName, productCount);
         this.developer = developer;
     }
-    public Smartphone(){
+
+    public Smartphone() {
 
     }
+
+    public boolean matches(String search) {
+        return super.matches(search) || developer.contains(search);
+    }
+
 
     @Override
     public boolean equals(Object o) {

@@ -19,7 +19,7 @@ public class ProductManagerTestWithValue {
     private Book fourthBook = new Book(3,"Гарри Поттер и философский камень", 99, "NoName");
 
     private Smartphone firstModel = new Smartphone(4, "Nokia", 1000, "Nokia.inc");
-    private Smartphone secondModel = new Smartphone(5, "Sony", 1200, "Panasonic");
+    private Smartphone secondModel = new Smartphone(5, "Iphone", 1200, "Panasonic");
     private Smartphone thirdModel = new Smartphone(6, "Sony Ericsson", 1400, "Nokia.inc");
 
     @BeforeEach
@@ -50,8 +50,8 @@ public class ProductManagerTestWithValue {
     @Test
     public void shouldSearchChosenNameSmartphone() {
 
-        Product[] actual = manager.searchBy("Nokia");
-        Product[] expected = new Product[]{firstModel};
+        Product[] actual = manager.searchBy("Iphone");
+        Product[] expected = new Product[]{secondModel};
         assertArrayEquals(expected, actual);
     }
 
