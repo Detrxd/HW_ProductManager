@@ -26,11 +26,18 @@ class ProductManagerTest {
         Product[] expected = new Product[]{};
         assertArrayEquals(expected,actual);
     }
+
     @Test
     public void shouldSearchChosenNameSmartphone (){
         Product[]actual = manager.searchBy("Iphone");
         Product[]expected = new Product[]{};
         assertArrayEquals(expected,actual);
     }
+    @Test
+    public void shouldSearchChosenDeveloperName (){
+        Product[]actual = manager.searchBy("Nokia.inc");
+        Product[]expected = new Product[]{};
+        assertArrayEquals(expected,actual);
+    }
 
-}
+ }

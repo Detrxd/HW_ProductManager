@@ -1,5 +1,6 @@
 package ru.netology.manager;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Book;
 import ru.netology.domain.Product;
@@ -15,26 +16,40 @@ public class ProductManagerTestWithValue {
     private Book firstBook = new Book(1, "Гарри Поттер и узник Азкабана", 500, "Джоан Роулинг");
     private Book secondBook = new Book(2, "Зеленая миля", 600, "Стивен Кинг");
     private Book thirdBook = new Book(3, "Унесенные ветром", 700, "Маргарет Митчелл");
+    private Book fourthBook = new Book(3,"Гарри Поттер и философский камень", 99, "NoName");
 
     private Smartphone firstModel = new Smartphone(4, "Nokia", 1000, "Nokia.inc");
-    private Smartphone secondModel = new Smartphone(5, "Sony", 1200, "Sony.inc");
-    private Smartphone thirdModel = new Smartphone(6, "Iphone", 1400, "Apple.inc");
+    private Smartphone secondModel = new Smartphone(5, "Sony", 1200, "Panasonic");
+    private Smartphone thirdModel = new Smartphone(6, "Sony Ericsson", 1400, "Nokia.inc");
 
+    @BeforeEach
+    public void saveProducts() {
+        manager.add(firstBook);
+        manager.add(secondBook);
+        manager.add(thirdBook);
+        manager.add(fourthBook);
+        manager.add(firstModel);
+        manager.add(secondModel);
+        manager.add(thirdModel);
+    }
     @Test
     public void shouldSearchChosenAuthor() {
-        manager.add(secondBook);
-        manager.add(firstBook);
-        manager.add(thirdBook);
+
         Product[] actual = manager.searchBy("Джоан Роулинг");
         Product[] expected = new Product[]{firstBook};
         assertArrayEquals(expected, actual);
     }
+    @Test
+    public void shouldSearchChosenDeveloperName(){
+
+        Product[] actual = manager.searchBy("Panasonic");
+        Product[] expected = new Product[]{secondModel};
+        assertArrayEquals(expected,actual);
+    }
 
     @Test
     public void shouldSearchChosenNameSmartphone() {
-        manager.add(firstModel);
-        manager.add(secondModel);
-        manager.add(thirdModel);
+
         Product[] actual = manager.searchBy("Nokia");
         Product[] expected = new Product[]{firstModel};
         assertArrayEquals(expected, actual);
@@ -42,39 +57,17 @@ public class ProductManagerTestWithValue {
 
     @Test
     public void shouldSearchChosenBookName(){
-        manager.add(firstBook);
-        manager.add(secondBook);
-        manager.add(thirdBook);
+
         Product[] actual = manager.searchBy("Гарри Поттер и узник Азкабана");
         Product[] expected = new Product[]{firstBook};
-        assertArrayEquals(actual,expected);
-    }
-
-    @Test
-    public void shouldSearchChosenBookNameFromAnyOtherBooksName(){
-        manager.add(firstBook);
-        manager.add(secondBook);
-        Product[] actual = manager.searchBy("Гарри Поттер и узник Азкабана");
-        Product[] expected = new Product[]{firstBook , secondBook};
-        assertArrayEquals(expected, actual);
+        assertArrayEquals(expected,actual);
     }
     @Test
-    public void Testing (){
-        manager.add(firstBook);
-        manager.add(secondBook);
-        manager.add(thirdBook);
-
-        assertArrayEquals(new Product[]{firstBook,firstModel}, manager.searchBy("Гарри Поттер"));
-    }
-
-    @Test
-    public void shouldSearchChosenSmartphoneNameFromAnyOtherSmartphonesName(){
-        manager.add(firstBook);
-        manager.add(secondBook);
-        manager.add(thirdBook);
-        Product[] actual = manager.searchBy("Sony");
-        Product[] expected = new Product[]{firstModel , secondModel , thirdModel};
-        assertArrayEquals(actual,expected);
+    public void shouldReceiveZero(){
+        Product[] actual = manager.searchBy("Android");
+        Product[] expected = new Product[]{};
+        assertArrayEquals(actual, expected);
     }
 }
+
 

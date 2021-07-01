@@ -50,7 +50,7 @@ public class ProductManager {
             if (product.getProductName().contains(search)) {
                 return true;
             }
-            if (((Smartphone) product).getProductName().contains(search)) {
+            if (((Smartphone) product).getDeveloper().contains(search)) {
                 return true;
             }
 
